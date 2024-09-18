@@ -1,0 +1,59 @@
+{
+  "name": "url-shortener",
+  "homepage": "web",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@emotion/react": "^11.13.0",
+    "@emotion/styled": "^11.13.0",
+    "@hookform/resolvers": "^3.9.0",
+    "@mui/icons-material": "^5.16.6",
+    "@mui/material": "^5.16.6",
+    "@mui/styled-engine-sc": "^6.0.0-alpha.18",
+    "crypto-js": "^4.2.0",
+    "dotenv": "^16.4.5",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-hook-form": "^7.52.2",
+    "react-icons": "^5.2.1",
+    "react-router-dom": "^6.26.0",
+    "react-scripts": "5.0.1",
+    "styled-components": "^6.1.12",
+    "web-vitals": "^2.1.4",
+    "yup": "^1.4.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "eject": "react-scripts eject",
+    "test": "react-scripts test --watchAll=false"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.4.8",
+    "@testing-library/react": "^14.3.1",
+    "@testing-library/user-event": "^14.5.2",
+    "@vitest/ui": "^2.0.5",
+    "jest": "^27.5.1",
+    "jsdom": "^24.0.0",
+    "react-test-renderer": "^18.3.1",
+    "vitest": "^2.0.5"
+  }
+}

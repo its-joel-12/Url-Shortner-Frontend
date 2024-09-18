@@ -1,0 +1,47 @@
+.home-screen {
+  min-height: 100vh;
+  height: 100%;
+  background: linear-gradient(to right, #2c3e50, #bdc3c7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* MediumScreen */
+@media (min-width: 768px) {
+  .home-screen {
+    min-height: 100vh;
+    height: 100%;
+    background-color: white;
+  }
+}
+
+/* L Screen */
+@media (min-width: 992px) {
+  .home-screen {
+    min-height: 100vh;
+    height: 100%;
+    background-color: white;
+  }
+}
+
+/* xl Screen */
+@media (min-width: 1200px) {
+  .home-screen {
+    min-height: 100vh;
+    height: 100%;
+    background-color: white;
+    overflow: hidden;
+  }
+}
+
+/* xs Screen */
+@media (max-width: 767px) {
+  .home-screen {
+    min-height: 100vh;
+    height: 100%;
+    background-color: white;
+  }
+}

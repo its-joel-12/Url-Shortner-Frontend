@@ -1,0 +1,143 @@
+.result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.result .long-url-container,
+.result .short-url-container {
+  display: flex;
+  align-items: center;
+  align-self: flex-start;
+  border: 1px solid #ccc;
+  padding: 5px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  max-width: 100%;
+  height: 45px;
+}
+
+.long-url-label,
+.short-url-label,
+.linkExp {
+  font-weight: bold;
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+
+.long-url-content,
+.short-url-content {
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+.long-url-content::-webkit-scrollbar,
+.short-url-content::-webkit-scrollbar {
+  display: none;
+}
+
+.long-url-content,
+.short-url-content {
+  scrollbar-width: none;
+}
+
+.long-url,
+.short-url {
+  font-size: 18px;
+  white-space: nowrap;
+  padding: 10px;
+  border-radius: 5px;
+  color: #333;
+  display: inline-block;
+}
+
+.ShortLinks-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 5px;
+}
+
+button {
+  padding: 12px 15px;
+  background-color: #3710c2;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+/* Responsive  */
+@media (max-width: 767px) {
+  .long-url,
+  .short-url {
+    font-size: 16px;
+  }
+
+  .ShortLinks-buttons {
+    gap: 1rem;
+    margin-top: 10px;
+  }
+
+  button {
+    padding: 10px 12px;
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 768px) {
+  .long-url,
+  .short-url {
+    font-size: 18px;
+  }
+
+  .ShortLinks-buttons {
+    gap: 1.5rem;
+    margin-top: 12px;
+  }
+
+  button {
+    padding: 12px 15px;
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 992px) {
+  .long-url,
+  .short-url {
+    font-size: 19px;
+  }
+
+  .ShortLinks-buttons {
+    gap: 2rem;
+    margin-top: 15px;
+  }
+
+  button {
+    padding: 12px 15px;
+    font-size: 18px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .long-url,
+  .short-url {
+    font-size: 17px;
+  }
+
+  .ShortLinks-buttons {
+    gap: 2.2rem;
+    margin-top: 10px;
+  }
+
+  button {
+    padding: 12px 15px;
+    font-size: 20px;
+  }
+}

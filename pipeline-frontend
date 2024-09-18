@@ -1,0 +1,71 @@
+trigger:
+  branches:
+    include:
+      - frontend
+      - frontend_dev
+
+variables:
+  sshPrivateKey: $(SSH_PRIVATE_KEY)
+  ec2Host: "52.70.158.35"
+  ec2User: "ubuntu"
+  remotePath: "/var/lib/tomcat10/webapps"
+  api_key: $(REACT_APP_API_KEY)
+  passphrase: $(REACT_APP_PASSPHRASE)
+  base_url: $(REACT_APP_BACKEND_BASE_URL)
+
+pool:
+  vmImage: "ubuntu-latest"
+
+steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: "20.x"
+    displayName: "Setup"
+
+  - script: |
+      npm install
+    displayName: "Installing Dependencies"
+
+  - script: |
+      echo "Running tests on branch $(Build.SourceBranchName)"
+      npm run test
+    displayName: "Unit Tests"
+    #condition: eq(variables['Build.SourceBranchName'], 'frontend_dev')
+
+  - script: |
+      echo "Running tests and building on branch $(Build.SourceBranchName)"
+
+      touch $(System.DefaultWorkingDirectory)/.env
+      echo "REACT_APP_API_KEY=$(api_key)" > $(System.DefaultWorkingDirectory)/.env
+      echo "REACT_APP_PASSPHRASE=$(passphrase)" >> $(System.DefaultWorkingDirectory)/.env
+      echo "REACT_APP_BACKEND_BASE_URL=$(base_url)" >> $(System.DefaultWorkingDirectory)/.env
+
+      #npm run test
+      npm run build
+    displayName: "Build Project"
+    condition: eq(variables['Build.SourceBranchName'], 'frontend')
+
+  - task: PublishBuildArtifacts@1
+    inputs:
+      PathtoPublish: "build"
+      ArtifactName: "react-build"
+      publishLocation: "Container"
+    displayName: "Save Artifacts"
+    condition: eq(variables['Build.SourceBranchName'], 'frontend')
+
+  - script: |
+      echo "Creating temporary SSH key file"
+      touch /tmp/temp_ssh_key.pem
+      echo -e "$(sshPrivateKey)" > /tmp/temp_ssh_key.pem
+              
+      chmod 400 /tmp/temp_ssh_key.pem
+          
+      echo "Deploying artifact build folder to EC2 instance"
+
+      scp -r -i "/tmp/temp_ssh_key.pem" -o StrictHostKeyChecking=no $(System.DefaultWorkingDirectory)/build/* ubuntu@52.70.158.35:/home/ubuntu/FrontEndArtifact/
+      ssh -i "/tmp/temp_ssh_key.pem" -o StrictHostKeyChecking=no ubuntu@52.70.158.35 "sudo cp -r /home/ubuntu/FrontEndArtifact/* /var/lib/tomcat10/webapps/web/"
+
+      echo "Cleaning up temporary SSH key file"
+      rm /tmp/temp_ssh_key.pem
+    displayName: "Deployment"
+    condition: eq(variables['Build.SourceBranchName'], 'frontend')

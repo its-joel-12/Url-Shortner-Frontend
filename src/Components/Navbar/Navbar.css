@@ -1,0 +1,15 @@
+.nav-logo {
+  height: 20px;
+}
+
+.Nav-Container {
+  background: linear-gradient(to right, #2c3e50, #bdc3c7);
+  /* background-color: white; */
+  padding: 10px;
+}
+
+@media (max-width: 767px) {
+  .Nav-Container {
+    text-align: center;
+  }
+}

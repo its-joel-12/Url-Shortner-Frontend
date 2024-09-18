@@ -1,0 +1,14 @@
+.errorCode {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.errorCode img {
+  height: 125px;
+  width: 125px;
+}
+
+.errorMessage {
+  margin-top: -24px;
+}
